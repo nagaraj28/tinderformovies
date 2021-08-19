@@ -1,0 +1,5 @@
+.btn-ctnr{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+}
