@@ -2,12 +2,18 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import ContextProvider from "./context/context.js"
 
 ReactDOM.render(
 
-  <React.StrictMode>
+  <ContextProvider>
+
+<React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  </ContextProvider>
+,
   document.getElementById('root')
+ 
 );
 

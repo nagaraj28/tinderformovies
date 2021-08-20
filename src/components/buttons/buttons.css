@@ -1,5 +1,21 @@
 .btn-ctnr{
-    position: fixed;
+    position: absolute;
+    left: 42%;
+    top: 70%; 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+
+}
+.btn{
+    padding: 1.5rem;
+    border-radius: 50%;
+  background:rgb(226, 225, 225);
+}
+.left{
+margin-right: 3rem;
+}
+
+.right{
+    margin-left: 3rem;
+
 }
