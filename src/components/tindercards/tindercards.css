@@ -10,15 +10,21 @@ img{
     width: 300;
     box-shadow: rgba(0, 0, 0, 0.40) 0px 22px 70px 4px;
 
+
 }
 .img-ctnr{
     width: 300;
     height: 400;
-    padding-bottom: 2rem;
+    padding: 5px;
+    padding-bottom: 3rem;
+
     background-color:white;
     text-align: center;
+    border-radius: 15px;
+    background: white;
 }
 .image{
+   
 }
 
 .desc{

@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react";
-import TinderCard from 'react-tinder-card'
-import TinderCardsList from "./components/tindercards/tindecards";
+import React from "react";
+import {Switch,Route } from "react-router-dom";
+import FavMovies from "./components/favmovies/favmovies";
 import NavBar from "./components/navbar/navbar";
-import SwipeButtons from "./components/buttons/buttons";
-
+import Login from "./components/signin/login";
+import Home from "./pages/home";
 
 function App() {
-
   return (<>
+  <Switch>
+  <Route exact path="/login">
+  <Login/>
+</Route>
+<Route exact path="/">
+  <Home/>
+</Route>
+<Route exact path="/savedmovies">
   <NavBar/>
-   <TinderCardsList/>
-   <SwipeButtons/>
+  <FavMovies/>
+</Route>
+  </Switch>
    </>
   );
 }
-
 export default App;
