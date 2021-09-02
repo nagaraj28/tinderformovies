@@ -1,4 +1,4 @@
-import React, { createContext,useState } from "react";
+import React, { createContext,useState ,useEffect} from "react";
 import axios from 'axios';
 import * as queryString from 'query-string';
 import { useHistory } from "react-router-dom";
@@ -8,9 +8,12 @@ import { useGoogleLogout } from "react-google-login";
 export  const Context =createContext();
 export default function ContextProvider({children}){
 
-      const [userInfo,setUserInfo] = useState({});
+      const [userInfo,setUserInfo] = useState(null);
   const history =useHistory();
   const [favouriteMovies,setFavouriteMovies] = useState([]);
+  const [burgerToggle,setBurgerToggle] = useState(false);
+  const [profileToggle,setProfileToggle] = useState(false);
+  
 
 
    /*
@@ -24,7 +27,6 @@ export default function ContextProvider({children}){
   axios.post("http://localhost:5000/users/favmovies",{'id':uid}).then(user=>{
     console.log("favourite movies from monngoDB for a user ",user.data.favdata);
   setFavouriteMovies(user.data.favdata);
-  
  })
 }
 
@@ -32,6 +34,7 @@ export default function ContextProvider({children}){
     
     console.log('Login Success: currentUser:', res.profileObj);
     createUserInMongoDB(res.profileObj.googleId,res.profileObj.givenName);
+    //updateFavContent(res.profileObj.googleId)
     history.push("/");
     updateData(res.profileObj);
     refreshTokenSetup(res);
@@ -70,8 +73,8 @@ export default function ContextProvider({children}){
 
     console.log("sending user details to create");
     console.log(newUser)
-    console.log(userInfo.googleId);
-    console.log(userInfo.givenName);
+    //console.log(userInfo.googleId);
+    //console.log(userInfo.givenName);
     console.log(id);
     console.log(name);
 
@@ -115,9 +118,7 @@ export default function ContextProvider({children}){
       console.log("right swiper",updateData);
       axios.post('http://localhost:5000/users/addupdate',updateData)
 .then(res => console.log(res.data));
-       
     }
-    
   }
        /*
   on swiping the card  left  
@@ -132,10 +133,13 @@ export default function ContextProvider({children}){
         }
         axios.post("http://localhost:5000/users/removeupdate",removeData)
       }
-
-
-
-    return <Context.Provider value={{onSwipe,onCardLeftScreen,updateData,onSuccess,onFailureLogin,onLogoutSuccess,onFailure,signOut,favouriteMovies,userInfo,updateFavContent,deleteFromFavourites}}>
+      const burgerToggleUtil = ()=>{
+        setBurgerToggle(!(burgerToggle))
+      }
+      const profileToggleUtil = ()=>{
+        setProfileToggle(!(profileToggle))
+      }
+    return <Context.Provider value={{onSwipe,onCardLeftScreen,updateData,onSuccess,onFailureLogin,onLogoutSuccess,onFailure,signOut,favouriteMovies,userInfo,updateFavContent,deleteFromFavourites,burgerToggle,burgerToggleUtil,profileToggle,profileToggleUtil}}>
         {children}
     </Context.Provider>
 }

@@ -6,3 +6,16 @@
     grid-gap: 10px;
     overflow-x: hidden;
 }
+@media screen and (max-width:1400px) {
+    .cardslist{
+        grid-template-columns: auto auto;
+
+    }
+}
+
+@media screen and (max-width:950px) {
+    .cardslist{
+        grid-template-columns: auto;
+
+    }
+    }
