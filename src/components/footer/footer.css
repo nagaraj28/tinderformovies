@@ -1,0 +1,31 @@
+.footer-ctnr{
+    width: 100%;
+    padding: 1rem;
+    padding-bottom: 1.2rem;
+    background-color: whitesmoke;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.socialmedia-icons{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.footer-txt{
+    font-size: 15px;
+    font-weight: 550;
+    margin-left: 25px;
+    opacity: 1;
+}
+
+.social-icon{
+padding: 0.5rem 1rem;
+padding-left: 0;
+}
+ul{
+    list-style: none;
+}

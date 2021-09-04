@@ -3,10 +3,11 @@ import axios from 'axios';
 import * as queryString from 'query-string';
 import { useHistory } from "react-router-dom";
 import { refreshTokenSetup } from "../utils/refreshToken";
-import { useGoogleLogout } from "react-google-login";
+import { useGoogleLogin,useGoogleLogout } from "react-google-login";
 
 export  const Context =createContext();
 export default function ContextProvider({children}){
+  const clientId='573562446882-mvoalejq05ef8qbsipm1eto7ib19iehh.apps.googleusercontent.com';
 
       const [userInfo,setUserInfo] = useState(null);
   const history =useHistory();
@@ -20,6 +21,8 @@ export default function ContextProvider({children}){
   login part
 
   */
+
+
  const updateFavContent = (uid)=>{
    if(!uid){
     uid=userInfo.googleId;
@@ -35,14 +38,19 @@ export default function ContextProvider({children}){
     console.log('Login Success: currentUser:', res.profileObj);
     createUserInMongoDB(res.profileObj.googleId,res.profileObj.givenName);
     //updateFavContent(res.profileObj.googleId)
-    history.push("/");
+  /*  setTimeout(()=>{
+    },10000);*/
+    //history.push("/");
     updateData(res.profileObj);
     refreshTokenSetup(res);
+    history.push("/");
+
    /* axios.post("http://localhost:5000/users/favmovies",{'id':res.profileObj.googleId}).then(user=>{
         console.log("favourite movies from monngoDB for a user ",user.data.favdata);
       setFavouriteMovies(user.data.favdata);
     })*/
     updateFavContent(res.profileObj.googleId);
+   
   
   }
   const onFailureLogin = (res) => {
@@ -51,6 +59,17 @@ export default function ContextProvider({children}){
       `Failed to login. 😢 `
     );
   };
+  const {signIn} =  useGoogleLogin({
+    clientId:clientId,
+    onSuccess,
+    onFailureLogin,
+    isSignedIn:true,
+    cookiePolicy:'single_host_origin',
+    accessType:'offline',
+
+ 
+  })
+ 
 
 
   /*
@@ -97,7 +116,6 @@ export default function ContextProvider({children}){
     const onFailure = ()=>{
       alert("logout failed");
   }
-   const clientId='573562446882-mvoalejq05ef8qbsipm1eto7ib19iehh.apps.googleusercontent.com';
    
    const {signOut} = useGoogleLogout({
        clientId,
@@ -139,7 +157,8 @@ export default function ContextProvider({children}){
       const profileToggleUtil = ()=>{
         setProfileToggle(!(profileToggle))
       }
-    return <Context.Provider value={{onSwipe,onCardLeftScreen,updateData,onSuccess,onFailureLogin,onLogoutSuccess,onFailure,signOut,favouriteMovies,userInfo,updateFavContent,deleteFromFavourites,burgerToggle,burgerToggleUtil,profileToggle,profileToggleUtil}}>
+
+    return <Context.Provider value={{onSwipe,onCardLeftScreen,updateData,onSuccess,onFailureLogin,onLogoutSuccess,onFailure,signOut,favouriteMovies,userInfo,updateFavContent,deleteFromFavourites,burgerToggle,burgerToggleUtil,profileToggle,profileToggleUtil,signIn}}>
         {children}
     </Context.Provider>
 }

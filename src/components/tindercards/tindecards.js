@@ -119,6 +119,7 @@ const filtey = (item,index)=>{
             <FavoriteIcon style={{color:"green"}}/>
         </div>
         </div>
+        <hr className="hr-util"/>
     </>
   );
 

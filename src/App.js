@@ -9,9 +9,6 @@ import { Context } from "./context/context";
 import FavouriteMovies from "./pages/favouritemovies";
 
 function App() {
-          
- 
-
   return (<>
   <Switch>
   <Route exact path="/login">
