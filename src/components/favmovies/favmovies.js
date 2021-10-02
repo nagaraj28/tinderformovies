@@ -3,6 +3,7 @@ import { Context } from "../../context/context";
 import classes from "./favmovies.css";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import axios from "axios";
+import {URL} from "../../index"
 
 export default function FavMovies(){
     const {favouriteMovies,userInfo,updateFavContent,deleteFromFavourites} = useContext(Context);
@@ -12,7 +13,7 @@ export default function FavMovies(){
        const[count,setCount] = useState(true);
         useEffect(()=>{
               updateFavContent(userInfo.googleId);
-               axios.post("http://localhost:5000/users/favmovies",{'id':userInfo.googleId}).then(user=>{
+               axios.post(`${URL}/users/favmovies`,{'id':userInfo.googleId}).then(user=>{
                 console.log("favourite movies from monngoDB for a user ",user.data.favdata);
                 setData(user.data.favdata);
               //setFavouriteMovies(user.data.favdata);

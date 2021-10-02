@@ -4,6 +4,7 @@ import * as queryString from 'query-string';
 import { useHistory } from "react-router-dom";
 import { refreshTokenSetup } from "../utils/refreshToken";
 import { useGoogleLogin,useGoogleLogout } from "react-google-login";
+import { URL } from "../index";
 
 export  const Context =createContext();
 export default function ContextProvider({children}){
@@ -27,7 +28,7 @@ export default function ContextProvider({children}){
    if(!uid){
     uid=userInfo.googleId;
    }
-  axios.post("http://localhost:5000/users/favmovies",{'id':uid}).then(user=>{
+  axios.post(`${URL}/users/favmovies`,{'id':uid}).then(user=>{
     console.log("favourite movies from monngoDB for a user ",user.data.favdata);
   setFavouriteMovies(user.data.favdata);
  })
@@ -97,7 +98,7 @@ export default function ContextProvider({children}){
     console.log(id);
     console.log(name);
 
-     await axios.post('http://localhost:5000/users/add', newUser)
+     await axios.post(`${URL}/users/add`, newUser)
   .then(res => console.log(res.data));
   };
 
@@ -134,7 +135,7 @@ export default function ContextProvider({children}){
      // const newArray = [...favouriteMovies,item];
       //setFavouriteMovies(newArray);
       console.log("right swiper",updateData);
-      axios.post('http://localhost:5000/users/addupdate',updateData)
+      axios.post(`${URL}/users/addupdate`,updateData)
 .then(res => console.log(res.data));
     }
   }
@@ -149,7 +150,7 @@ export default function ContextProvider({children}){
           id:userInfo.googleId,
           favdata:movie,
         }
-        axios.post("http://localhost:5000/users/removeupdate",removeData)
+        axios.post(`${URL}/users/removeupdate`,removeData)
       }
       const burgerToggleUtil = ()=>{
         setBurgerToggle(!(burgerToggle))
@@ -176,106 +177,3 @@ export default function ContextProvider({children}){
 
 
 
-
-
-
-
-
-
-//  const userData = useUserInfo();
-      
-       /*
-     redirects to google OAuth verification 
-       */
-   /* const googleLoginUrl=()=>{
-      const stringifiedParams = queryString.stringify({
-        client_id: '573562446882-mvoalejq05ef8qbsipm1eto7ib19iehh.apps.googleusercontent.com',
-        redirect_uri: 'http://localhost:3000/',
-        scope: [
-          'https://www.googleapis.com/auth/userinfo.email',
-          'https://www.googleapis.com/auth/userinfo.profile',
-        ].join(' '), // space seperated string
-        response_type: 'code',
-        access_type: 'offline',
-        prompt: 'consent',
-      });
-      const googleLoginLink = `https://accounts.google.com/o/oauth2/v2/auth?${stringifiedParams}`;
-      return googleLoginLink;
-    }
-    */
-
-     
-
-  /*
-  on swiping the card either left to right 
-  */
-  /*  const onSwipe = (direction,item) => {
-        console.log(direction,userInfo);
-        const updateData = {
-          //send user id from here
-          id:userInfo.id,
-          favdata:item,
-        }
-        if(direction==="right"){
-          console.log("right swiper",updateData);
-          axios.post('http://localhost:5000/users/addupdate',updateData)
-  .then(res => console.log(res.data));
-        }
-      }
-
-      */
-
-      
-    /*
-    to fetch codefrom redirect link  after google login signin
-    */
-  /* const googleDigestCode = ()=>{
-    const urlParams = queryString.parse(window.location.search);
-    if (urlParams.error) {
-      console.log(`An error occurred: ${urlParams.error}`);
-    } else {
-      console.log(`The code is: ${urlParams.code}`);
-     return getAccessTokenFromCode(urlParams.code);
-    }
-   }
-*/
-   /*
-     for receiving access token for a user
-   */
- /*  async function getAccessTokenFromCode(code) {
-    const { data } = await axios({
-      url: `https://oauth2.googleapis.com/token`,
-      method: 'post',
-      data: {
-        client_id:'573562446882-mvoalejq05ef8qbsipm1eto7ib19iehh.apps.googleusercontent.com',
-        client_secret:'fRp9wtTtIyhRjytuIev_2AcI',
-        redirect_uri: 'http://localhost:3000/',
-        grant_type: 'authorization_code',
-        code,
-      },
-    });
-    console.log("access-token",data); // { access_token, expires_in, token_type, refresh_token }
-     // getAccessTokenFromCode(urlParams.code);
- //   setUserToken(userToken);
-    return getGoogleUserInfo(data.access_token);
-    return data.access_token;
-  };
-  */
-  /*
-  fetches userData
-  */
- /* async function getGoogleUserInfo(access_token) {
-   
-    const { data } = await axios({
-      url: 'https://www.googleapis.com/oauth2/v2/userinfo',
-      method: 'get',
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
-    console.log("user info",data); // { id, email, given_name, family_name }
-    setUserInfo(data);
-    createUserInMongoDB(data);
-    return data; 
-  };
-*/
