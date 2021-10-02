@@ -57,7 +57,7 @@ export default function ContextProvider({children}){
   const onFailureLogin = (res) => {
     console.log('Login failed: res:', res);
     alert(
-      `Failed to login. 😢 `
+      `Failed to login.😢,please try again.`
     );
   };
   const {signIn} =  useGoogleLogin({
