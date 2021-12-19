@@ -1,29 +1,35 @@
 .btn-ctnr{
-    display: block;
+     /* width: 100%; */
+     /* display: grid;
+     grid-template-columns: auto auto;
+     justify-content: center;
+     align-items: center; */
+     /*
     position: absolute;
     left: 42%;
     top: 70%; 
     display: flex;
     justify-content: space-around;
+    mar */
 
 }
 .hide{
-    display: none;
+    /* display: none; */
 }
 .btn{
-    padding: 1.5rem;
-    border-radius: 50%;
-  background:rgb(226, 225, 225);
-  opacity: 0.7;
+    /* padding: 1.5rem; */
+    /* border-radius: 50%;
+    background:rgb(226, 225, 225);
+    opacity: 0.7; */
 }
 .left{
-margin-right: 3rem;
+/* margin-right: 3rem; */
 }
 
 .right{
-    margin-left: 3rem;
+    /* margin-left: 3rem; */
 }
 .left:hover,.right:hover{
-    cursor: pointer;
-    opacity: 1;
+    /* cursor: pointer;
+    opacity: 1; */
 }

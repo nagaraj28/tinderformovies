@@ -25,20 +25,24 @@ export default function FavMovies(){
     <div className="cardslist" >
         {
                      (favouriteMovies.length>0)?(favouriteMovies.map(movie=>{
-                        return   <div >
-                        <img style={{borderRadius:"10px"}} width="400" height="200" className="image" src={"https://image.tmdb.org/t/p/w500/"+movie.backdrop_path} alt="movie poster"/>
+                        return   <div class="card">
+                        <img  className="image" src={"https://image.tmdb.org/t/p/w500/"+movie.backdrop_path} alt="movie poster"/>
                      {/*   <p className="desc" style={{position:"absolute",top:"1%"}}><h3>overview</h3>{movie.overview}</p> */}
                             <div style={{position:"",top:"90%"}}>
-                        <span>{movie.title}</span>.
-                        <span style={{paddingLeft:"3rem"}}> ❤️ : {movie.vote_average}</span>
+                        <p>{movie.title}</p>
+                        <div class="card-btns">
+                        <span > ❤️ : {movie.vote_average}</span>
                         <DeleteForeverIcon onClick={()=>{
                             console.log("deleing : ",movie)
                             deleteFromFavourites(movie);    
                             updateFavContent(userInfo.googleId);
                             setCount(!count);
                             console.log(count);
-                          //  setCount(!count);
-                        }} style={{width:"150px",color:"",paddingLeft:"160px",marginTop:"10px",marginBottom:"10px",marginLeft:"50px"}}/>
+                          // setCount(!count);
+                        }} 
+                        //style={{width:"150px",color:"",paddingLeft:"160px",marginTop:"10px",marginBottom:"10px",marginLeft:"50px"}}
+                        />
+                        </div>
                         <br/>
                         </div>  
                        </div>

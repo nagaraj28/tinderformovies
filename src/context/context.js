@@ -1,6 +1,5 @@
-import React, { createContext,useState ,useEffect} from "react";
+import React, { createContext,useState } from "react";
 import axios from 'axios';
-import * as queryString from 'query-string';
 import { useHistory } from "react-router-dom";
 import { refreshTokenSetup } from "../utils/refreshToken";
 import { useGoogleLogin,useGoogleLogout } from "react-google-login";

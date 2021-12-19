@@ -40,14 +40,22 @@ const filtey = (item,index)=>{
             }
   }
   if(isItem){
-  return <div key={item.id} className={burgerToggle?"hide":"img-ctnr"} style={{position:"absolute"}}>
+  return <div key={item.id} className={burgerToggle?"hide":"img-ctnr"}
+   style={{position:"absolute"}}
+   >
         <TinderCard  onSwipe={(dir)=>onSwipe(dir,item)} onCardLeftScreen={() => onCardLeftScreen('fooBar')} preventSwipe={['up','down']}>
                     <div >
-                      <img style={{borderRadius:"10px"}} width="480" height="250" className="image" src={"https://image.tmdb.org/t/p/w500/"+item.backdrop_path} alt="movie poster"/>
+                      <img style={{borderRadius:"10px"}} width="400" height="250" className="image" src={"https://image.tmdb.org/t/p/w500/"+item.backdrop_path} alt="movie poster"/>
                       <p className="desc" style={{position:"absolute",top:"1%"}}><h3>overview</h3>{item.overview}</p> 
                           <div style={{position:"absolute",top:"88%"}}>
-                      <span>{item.title}</span>
-                      <span style={{paddingLeft:"3rem"}}> ❤️ : {item.vote_average}</span><br/>
+                            <div className="title-rating">
+                            <span className="title">{item.title}</span>
+                      <span 
+                      className="fav-btn"
+                      // style={{paddingLeft:"3rem"}}
+                      > ❤️ : {item.vote_average}</span>
+                            </div>
+                 
                       </div>  
                      </div>
         </TinderCard></div>
@@ -106,8 +114,8 @@ const filtey = (item,index)=>{
         return filtey(item,index);
         }):(<div className="loader"></div>)
         }
-    </div>
-    <div className={burgerToggle?"hide":"btn-ctnr"}>
+                <hr className="hr-util"/>
+          <div className={burgerToggle?"hide":"btn-ctnr"}>
             <div className="btn left" onClick={()=>{
               removeLastItem("left");
             }}>
@@ -119,8 +127,8 @@ const filtey = (item,index)=>{
             <FavoriteIcon style={{color:"green"}}/>
         </div>
         </div>
-        <hr className="hr-util"/>
-    </>
+    </div>
+      </>
   );
 
 }

@@ -1,10 +1,35 @@
 .cardslist{
     display: grid;
     grid-template-columns: auto auto auto;    
-    margin:50px;
+    justify-content: center;
+    grid-gap: 40px;
+    margin-top: 50px;
+    /* margin:50px;
     margin-left: 60px;
-    grid-gap: 10px;
+    grid-gap: 10px;*/
     overflow-x: hidden;
+}
+.card{
+    max-width: 400px;
+    margin:0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-bottom: 2px;
+}
+.image{
+    border-radius: 5px;
+    width: 100%;
+}
+.card:hover{
+    cursor: pointer;
+    /* transform: scale(1.1); */
+}
+.card:hover>.image{
+    opacity: 1;
+}
+.card-btns{
+    display: flex;
+    justify-content: space-between;
 }
 @media screen and (max-width:1400px) {
     .cardslist{
@@ -12,7 +37,6 @@
 
     }
 }
-
 @media screen and (max-width:950px) {
     .cardslist{
         grid-template-columns: auto;
